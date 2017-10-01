@@ -24,7 +24,7 @@ while True:
     calorie = input('>>> ')
     try:
         calorie = eval(calorie)
-        print('入力カロリー: ' + calorie)
+        print('入力カロリー: ' + str(calorie))
         break
     except:
         continue
