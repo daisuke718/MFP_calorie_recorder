@@ -5,7 +5,8 @@ MyFitnessPalのカロリー入力を自動化するスクリプト。
 # インストール
 
 ## 前提
-python3系がインストールされていること
+- python3系がインストールされていること
+- chromeDriverがインストールされていること(https://sites.google.com/a/chromium.org/chromedriver/)
 
 ## 環境構築手順
 ```
