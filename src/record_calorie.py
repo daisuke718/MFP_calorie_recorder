@@ -23,7 +23,7 @@ while True:
     print('カロリーを入力してください(数値または計算式)')
     calorie = input('>>> ')
     try:
-        calorie = eval(calorie)
+        calorie = int(eval(calorie))
         print('入力カロリー: ' + str(calorie))
         break
     except:
