@@ -19,9 +19,16 @@ print('食事名を入力してください')
 print('0: 朝食, 1: 昼食, 2: 夕食, 3: おやつ')
 meal = input('>>> ')
 
-print('カロリーを入力してください')
-calorie = input('>>> ')
-
+while True:
+    print('カロリーを入力してください(数値または計算式)')
+    calorie = input('>>> ')
+    try:
+        calorie = eval(calorie)
+        print('入力カロリー: ' + calorie)
+        break
+    except:
+        continue
+    
 options = Options()
 # ユーザディレクトリを固定
 options.add_argument('user-data-dir=user-data-dir')
