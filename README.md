@@ -13,6 +13,7 @@ MyFitnessPalのカロリー入力を自動化するスクリプト。
 $ git clone git@github.com:daisuke718/MFP_calorie_recorder.git
 $ cd MFP_calorie_recorder
 $ python3 -m venv .
+$ source bin/activate
 $ pip install -r requirements/requirements.txt
 ```
 
