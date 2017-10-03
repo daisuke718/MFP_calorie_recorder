@@ -11,7 +11,18 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from datetime import datetime
 
-today = datetime.now().strftime('%Y-%m-%d')
+now = datetime.now()
+today = now.strftime('%Y-%m-%d')
+hour = now.hour
+meal_default = -1
+if 8 <= hour < 12:
+    meal_default = 0
+elif 12 <= hour < 15:
+    meal_default = 1
+elif 19 <= hour < 21:
+    meal_default = 2
+else:
+    meal_default = 3
 
 print('日付を入力して下さい')
 print('デフォルト: ' + today)
@@ -19,7 +30,8 @@ date = input('>>> ') or today
 
 print('食事名を入力してください')
 print('0: 朝食, 1: 昼食, 2: 夕食, 3: おやつ')
-meal = input('>>> ')
+print('デフォルト: ' + str(meal_default))
+meal = input('>>> ') or meal_default
 
 while True:
     print('カロリーを入力してください(数値または計算式)')
