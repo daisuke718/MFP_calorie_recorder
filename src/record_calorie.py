@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -63,5 +65,9 @@ el_submit_btn.click()
 WebDriverWait(driver, 10).until(
     EC.visibility_of_element_located((By.CLASS_NAME, 'diary'))
 )
+
+driver.get(driver.current_url + "#main")
+
+time.sleep(3)
 
 driver.quit()
