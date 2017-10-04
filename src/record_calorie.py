@@ -32,6 +32,7 @@ print('食事名を入力してください')
 print('0: 朝食, 1: 昼食, 2: 夕食, 3: おやつ')
 print('デフォルト: ' + str(meal_default))
 meal = input('>>> ') or meal_default
+print("入力食事名: " + str(meal))
 
 while True:
     print('カロリーを入力してください(数値または計算式)')
@@ -49,7 +50,7 @@ options.add_argument('user-data-dir=user-data-dir')
 # ChromeのWebDriverオブジェクトを作成する
 driver = webdriver.Chrome(chrome_options=options)
 
-driver.get('http://www.myfitnesspal.com/ja/food/quick_add?meal=' + meal + '&date=' + date)
+driver.get('http://www.myfitnesspal.com/ja/food/quick_add?meal=' + str(meal) + '&date=' + date)
 
 # ユーザ＆パスワード保存のため、初回のみ必要
 # el_username = driver.find_element_by_name('username')
