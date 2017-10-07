@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+import sys
 import time
 
 from selenium import webdriver
@@ -10,6 +11,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from datetime import datetime
+
+import unicodedata
+
+def full2half(s):
+    r = str(s)
+    return r.translate(r.maketrans('０１２３４５６７８９−', '0123456789-'))
+
 
 now = datetime.now()
 today = now.strftime('%Y-%m-%d')
@@ -24,24 +32,46 @@ elif 19 <= hour < 21:
 else:
     meal_default = 3
 
-print('日付を入力して下さい')
-print('デフォルト: ' + today)
-date = input('>>> ') or today
+# 日付の指定
+while True:
+    print('日付を入力して下さい')
+    print('デフォルト: ' + today)
+    date = input('>>> ') or today
+    try:
+        date = full2half(date)
+        print('入力日付: ' + date)
+        datetime.strptime(date, '%Y-%m-%d')
+        break
+    except:
+        print(sys.exc_info())
+        continue
 
-print('食事名を入力してください')
-print('0: 朝食, 1: 昼食, 2: 夕食, 3: おやつ')
-print('デフォルト: ' + str(meal_default))
-meal = input('>>> ') or meal_default
-print("入力食事名: " + str(meal))
+# 食事名の指定
+while True:
+    print('食事名を入力してください')
+    print('0: 朝食, 1: 昼食, 2: 夕食, 3: おやつ')
+    print('デフォルト: ' + str(meal_default))
+    meal = input('>>> ') or meal_default
+    try:
+        meal = full2half(meal)
+        print("入力食事名: " + str(meal))
+        if int(meal) < 0 or 3 < int(meal):
+            raise Exception
+        break
+    except:
+        print(sys.exc_info())
+        continue
 
 while True:
     print('カロリーを入力してください(数値または計算式)')
     calorie = input('>>> ')
     try:
+        calorie = full2half(calorie)
         calorie = int(eval(calorie))
         print('入力カロリー: ' + str(calorie))
         break
     except:
+        print(sys.exc_info())
         continue
     
 options = Options()
